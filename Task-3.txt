@@ -1,0 +1,29 @@
+def check_password_strength(password):
+    length_check = len(password) >= 8
+    uppercase_check = any(char.isupper() for char in password)
+    lowercase_check = any(char.islower() for char in password)
+    digit_check = any(char.isdigit() for char in password)
+    special_characters = "!@#$%^&*(),.?\":{}|<>"
+    special_char_check = any(char in special_characters for char in password)
+    
+    if all([length_check, uppercase_check, lowercase_check, digit_check, special_char_check]):
+        return "Password is strong."
+    else:
+        feedback = "Password is not strong enough. It should have:\n"
+        if not length_check:
+            feedback += "- At least 8 characters\n"
+        if not uppercase_check:
+            feedback += "- At least one uppercase letter\n"
+        if not lowercase_check:
+            feedback += "- At least one lowercase letter\n"
+        if not digit_check:
+            feedback += "- At least one digit\n"
+        if not special_char_check:
+            feedback += "- At least one special character (!, @, #, $, etc.)\n"
+        return feedback
+
+# Main logic
+print("Welcome to the Password Strength Checker!")
+password = input("Please enter a password to check its strength: ")
+result = check_password_strength(password)
+print(result)
