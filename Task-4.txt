@@ -1,0 +1,31 @@
+import random
+
+def guess_the_number():
+    # Get the range from the user
+    print("Welcome to the Number Guessing Game!")
+    lower_bound = int(input("Enter the lower bound of the range: "))
+    upper_bound = int(input("Enter the upper bound of the range: "))
+
+    # Generate a random number within the range
+    secret_number = random.randint(lower_bound, upper_bound)
+    max_attempts = 10  # Set the maximum number of attempts
+
+    print(f"I have selected a number between {lower_bound} and {upper_bound}. You have {max_attempts} attempts to guess it.")
+
+    attempts = 0
+    while attempts < max_attempts:
+        guess = int(input("Enter your guess: "))
+        attempts += 1
+
+        if guess < secret_number:
+            print("Try Again! Your guess was too small.")
+        elif guess > secret_number:
+            print("Try Again! Your guess was too high.")
+        else:
+            print(f"Congratulations! You've guessed the number in {attempts} attempts.")
+            break
+    else:
+        print(f"Better Luck Next Time! The number was {secret_number}.")
+
+# Run the game
+guess_the_number()
